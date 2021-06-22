@@ -16,9 +16,14 @@ export default {
   },
   methods: {
     addTodo() {
-      //저장하는 로직
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput();
+      // 비어 있는지 확인 
+      if(this.newTodoItem !== '') {
+        // 저장하는 로직
+        var obj = { completed: false, item: this.newTodoItem};
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        // localStorage.setItem(this.newTodoItem, obj); -> 로컬스토리지 콘솔 내에서 내용 확인이 불가능
+        this.clearInput();
+      }
     },
     clearInput() {
       // input box 초기화
