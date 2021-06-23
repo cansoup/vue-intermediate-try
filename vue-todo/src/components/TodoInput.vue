@@ -18,9 +18,8 @@ export default {
     addTodo() {
       // 비어 있는지 확인 
       if(this.newTodoItem !== '') {
-        // 저장하는 로직
-        var obj = { completed: false, item: this.newTodoItem};
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        // this.$emit('이벤트 이름', 인자1, 인자2, ...
+        this.$emit('addTodoItem', this.newTodoItem);
         // localStorage.setItem(this.newTodoItem, obj); -> 로컬스토리지 콘솔 내에서 내용 확인이 불가능
         this.clearInput();
       }

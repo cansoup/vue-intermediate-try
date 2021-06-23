@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoInput @addTodoItem="addOneItem"></TodoInput>
+    <TodoList :propsdata="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -19,6 +19,29 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter
+  },
+  data() {
+    return {
+      todoItems: []
+    }
+  },
+  // 인스턴스가 생성되자마자 호출되는 라이프사이클 훅
+  created() {
+    if(localStorage.length > 0) {
+      for(var i = 0; i < localStorage.length; i ++){
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    }
+  },
+  methods: {
+    addOneItem(todoItem) {
+        // 저장하는 로직
+        var obj = { completed: false, item: todoItem};
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.todoItems.push(obj);
+    },
   }
 }
 </script>
