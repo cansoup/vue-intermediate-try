@@ -19,16 +19,10 @@ export default {
   },
   methods: {
     removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.propsdata.splice(index, 1);
+      this.$emit('removeItem', todoItem, index);
     },
     toggleComplete(todoItem, index) {
-      console.log(index);
-      todoItem.completed = !todoItem.completed;
-
-      // 로컬 스토리지에 데이터 갱신
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('toggleItem', todoItem, index);
     }
   },
 };

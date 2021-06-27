@@ -13,7 +13,8 @@ export default {
   },
   methods: {
     clearTodo() {
-      localStorage.clear();
+      console.log('clearAll');
+      this.$emit('clearTodo')
     },
   },
 }
