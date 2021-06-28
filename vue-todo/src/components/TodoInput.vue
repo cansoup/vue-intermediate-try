@@ -4,14 +4,27 @@
     <span class="addContainer">
       <i class="fas fa-plus addBtn" @click="addTodo"></i>
     </span>
+
+    <!-- use the modal component, pass in the prop -->
+    <Modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        경고!
+        <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+      </h3>
+      <div slot="body">
+        아무것도 입력되지 않았습니다.
+      </div>
+    </Modal>
   </div>
 </template>
 
-<script lang='ts'>
+<script>
+import Modal from './common/Modal.vue';
 export default {
   data() {
     return  {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false,
     }
   },
   methods: {
@@ -22,12 +35,17 @@ export default {
         this.$emit('addTodoItem', this.newTodoItem);
         // localStorage.setItem(this.newTodoItem, obj); -> 로컬스토리지 콘솔 내에서 내용 확인이 불가능
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput() {
       // input box 초기화
       this.newTodoItem = '';
     }
+  },
+  components: {
+    Modal,
   }
 };
 </script>
@@ -56,5 +74,8 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+.closeModalBtn {
+  color: #42b983;
 }
 </style>

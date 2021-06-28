@@ -8,6 +8,7 @@
 </template>
 
 <script>
+// 로직을 app.vue에서 한 번에 관리하여 데이터의 추적을 쉽게 한다. - vuex와 유사
 import TodoHeader from './components/TodoHeader.vue'
 import TodoInput from './components/TodoInput.vue'
 import TodoList from './components/TodoList.vue'
