@@ -28,8 +28,10 @@ vue init webpack-simple vue-todo
 - 복잡한 애플리케이션의 많은 컴포넌트들을 효율적으로 관리하는 상태 관리 패턴이자 라이브러리
 - MVC 패턴의 문제점: ModelView가 많아질수록 데이터의 흐름을 추적할 수 없는 문제점이 발생한다.(페이스북 채팅 화면) -> 
   Flux: 데이터를 단방향으로만 처리하여 데이트 흐름을 정형화. 안정성 있는 코딩 가능
-- ** state(=data), getters(=computed), mutations(=method), actions(=비동기 methods) **
+- state(=data), getters(=computed), mutations(=method), actions(=비동기 methods)
 - Helper 기능
 - Vuex구조화, 모듈 구조화
+
+##### 기타 참고
 - (비동기 처리와 콜백 함수)https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
 - (Promise)https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
