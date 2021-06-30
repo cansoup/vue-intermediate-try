@@ -29,7 +29,7 @@ export default {
   // 인스턴스가 생성되자마자 호출되는 라이프사이클 훅
   created() {
     if(localStorage.length > 0) {
-      for(var i = 0; i < localStorage.length; i ++){
+      for(let i = 0; i < localStorage.length; i ++){
         if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
           this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
         }
@@ -39,7 +39,7 @@ export default {
   methods: {
     addOneItem(todoItem) {
         // 저장하는 로직
-        var obj = { completed: false, item: todoItem};
+        const obj = { completed: false, item: todoItem};
         // 로컬스토리지 목록과 화면 목록을 동기화
         localStorage.setItem(todoItem, JSON.stringify(obj));
         this.todoItems.push(obj);

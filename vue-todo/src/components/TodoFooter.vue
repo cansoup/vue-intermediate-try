@@ -13,7 +13,6 @@ export default {
   },
   methods: {
     clearTodo() {
-      console.log('clearAll');
       this.$emit('clearTodo')
     },
   },
