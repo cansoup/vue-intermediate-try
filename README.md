@@ -18,3 +18,18 @@ vue init webpack-simple vue-todo
   funtion sum() {} // 함수 선언식
   var sum = function() {} // 함수 표현식
 - 순서 : 함수 선언식과 변수 선언을 hoisting -> 변수 대입 및 할당
+
+##### 자바스크립트 모듈화
+- import, export
+- 재사용성이 뛰어난 기능을 묶어 필요할 때마다 가져다 쓸 수 있도록 한다.
+- 호출되기 전까지는 코드 실행과 동작을 하지 않는 특징이 있다.
+
+##### Vuex
+- 복잡한 애플리케이션의 많은 컴포넌트들을 효율적으로 관리하는 상태 관리 패턴이자 라이브러리
+- MVC 패턴의 문제점: ModelView가 많아질수록 데이터의 흐름을 추적할 수 없는 문제점이 발생한다.(페이스북 채팅 화면) -> 
+  Flux: 데이터를 단방향으로만 처리하여 데이트 흐름을 정형화. 안정성 있는 코딩 가능
+- ** state(=data), getters(=computed), mutations(=method), actions(=비동기 methods) **
+- Helper 기능
+- Vuex구조화, 모듈 구조화
+- (비동기 처리와 콜백 함수)https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
+- (Promise)https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
