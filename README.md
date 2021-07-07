@@ -32,6 +32,37 @@ vue init webpack-simple vue-todo
 - Helper 기능
 - Vuex구조화, 모듈 구조화
 
+##### Helper
+- state -> mapState
+  ```
+  // App.vue
+  import { mapState } from 'vuex
+
+  computed() {
+    ...mapState(['num'])
+    // num() {return this.$store.state.num; }
+  }
+
+  // store.js
+  state: { num: 10 }
+  ```
+- getters -> mapGetters
+- mutations -> mapMutations
+- actions -> mapActions
+- 
+  ```
+  // App.vue
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
+  export default {
+    computed() { ...mapState(['num']) }
+    // this.num으로 접근 가능
+  }
+  ```
+
+###### ES6 
+- object spread operator : ``` ... ```
+
 ##### 기타 참고
 - (비동기 처리와 콜백 함수)https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
 - (Promise)https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
