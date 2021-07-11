@@ -1,8 +1,10 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-    <span class="addContainer">
-      <i class="fas fa-plus addBtn" @click="addTodo"></i>
+    <!-- keyup.enter -> 한글 입력시 이벤트가 두 번 발생 -->
+    <!-- https://www.inflearn.com/questions/9010 -->
+    <input type="text" v-model="newTodoItem" @keypress.enter="addTodo">
+    <span class="addContainer" @click="addTodo">
+      <i class="fas fa-plus addBtn" aria-hidden="true"></i>
     </span>
 
     <!-- use the modal component, pass in the prop -->
@@ -31,7 +33,8 @@ export default {
     addTodo() {
       // 비어 있는지 확인 
       if(this.newTodoItem !== '') {
-        this.$store.commit('addOneItem', this.newTodoItem);
+        const item = this.newTodoItem.trim();
+        this.$store.commit('addOneItem', item);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;

@@ -1,10 +1,10 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in this.$store.state.todoItems" :key="todoItem.item" class="shadow">
-        <i class="checkBtn fas fa-check" :class="{checkBtnCompleted: todoItem.completed}" @click="toggleComplete(todoItem, index)"></i>
+      <li v-for="(todoItem, index) in this.storedTodoItems" :key="todoItem.item" class="shadow">
+        <i class="checkBtn fas fa-check" :class="{checkBtnCompleted: todoItem.completed}" @click="toggleComplete({todoItem, index})"></i>
         <span :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-        <span class="removeBtn" @click="removeTodo(todoItem, index)">
+        <span class="removeBtn" @click="removeTodo({todoItem, index})">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -13,15 +13,36 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
   methods: {
-    removeTodo(todoItem, index) {
-      this.$store.commit('removeOneItem', {todoItem, index});
-    },
-    toggleComplete(todoItem, index) {
-      this.$store.commit('toggleOneItem', {todoItem, index});
-    }
+    ...mapMutations({
+      // helper에서는 파라미터를 직접 넘기지 않아도 암묵적으로 넘기게 되어 있다.
+      // 인자가 2개 이상일 경우 객체로 묶어 1개로 넘기도록 한다.
+      removeTodo: 'removeOneItem',
+      toggleComplete: 'toggleOneItem',
+    }),
+    // removeTodo(todoItem, index) {
+    //   this.$store.commit('removeOneItem', {todoItem, index});
+    // },
+    // toggleComplete(todoItem, index) {
+    //   this.$store.commit('toggleOneItem', {todoItem, index});
+    // }
   },
+  computed: {
+    // todoItems() {
+    //   return this.$store.getters.storedTodoItems;
+    // }
+
+    // vuex에 선언한 속성을 그대로 컴포넌트에 연결하는 문법
+    ...mapGetters(['storedTodoItems']) 
+    // vuex에 선언한 속성을 컴포넌트의 특정 메서드에 연결하는 문법
+    // ...mapGetters({
+    //   컴포넌트의 메서드: store에 선언된 메서드
+    //   testFunction: 'storedTodoItems'
+    // })
+  }
 };
 </script>
 
